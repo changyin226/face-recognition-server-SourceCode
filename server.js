@@ -12,7 +12,8 @@ const db = require('knex')({
     }
   }
 })
-const redisClient = require("redis").createClient(process.env.REDIS_URL);
+const redisClient = require('redis').createClient(process.env.REDIS_URL);
+const port = process.env.PORT || 3000
 
 const register = require('./controllers/register')
 const sign = require('./controllers/sign')
@@ -30,6 +31,6 @@ app.get('/profile/:id', requireAuth(redisClient), getProfile(db))
 app.put('/image', requireAuth(redisClient), image.imageHandler(db))
 app.post('/imageurl', requireAuth(redisClient), image.apiCallHandler())
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`app is running on port ${process.env.PORT}`)
+app.listen(port, () => {
+  console.log(`app is running on port ${port}`)
 })

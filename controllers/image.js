@@ -11,7 +11,7 @@ const apiCallHandler = () => (req, res) => {
       if(!data.outputs[0].data.regions) return res.status(400).json('請提供含有明顯人臉的圖片')
       return res.json(data)
     })
-    .catch(() => res.status(400).json('連線發生錯誤或圖片網址格式錯誤，請再試一次'))
+    .catch(() => res.status(400).json('圖片網址格式錯誤或連線發生錯誤，請再試一次'))
 }
 
 const imageHandler = (db) => (req, res) => {
